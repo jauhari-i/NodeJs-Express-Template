@@ -1,6 +1,6 @@
 {
   "name": "node-codebase-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Just A Codebase for my project",
   "main": "./src/bin/app.js",
   "scripts": {
@@ -15,7 +15,9 @@
   "keywords": [
     "codebase"
   ],
-  "pre-commit": [ "lint:js" ],
+  "pre-commit": [
+    "lint:js"
+  ],
   "author": "Irfan Jauhari",
   "license": "ISC",
   "dependencies": {
