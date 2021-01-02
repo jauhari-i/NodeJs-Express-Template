@@ -33,7 +33,7 @@ npm start
 npm run test
 
 # Formating
-npm run prelint:js
+npm run lint:js
 
 ```
 
