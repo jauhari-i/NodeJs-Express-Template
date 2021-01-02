@@ -27,6 +27,7 @@ npm run dev
 
 # Run in production
 npm run build
+npm start
 
 # Unit/Integration testing
 npm run test
