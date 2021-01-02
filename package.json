@@ -1,0 +1,48 @@
+{
+  "name": "node-codebase-template",
+  "version": "1.0.0",
+  "description": "Just A Codebase for my project",
+  "main": "./src/bin/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "del /s /q dist && babel -d ./dist ./src",
+    "start": "node ./dist/bin/app.js",
+    "dev": "nodemon  --exec babel-node ./src/bin/app.js",
+    "prelint:js": "npm run format:all",
+    "lint:js": "eslint src/**/*.js",
+    "format:all": "prettier --write src/**/*.js"
+  },
+  "keywords": [
+    "codebase"
+  ],
+  "author": "Irfan Jauhari",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "body-parser": "^1.19.0",
+    "confidence": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.17.0",
+    "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0",
+    "fs": "0.0.1-security",
+    "http-error": "0.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.9",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "eslint-config-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^1.15.3"
+  }
+}
