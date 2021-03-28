@@ -2,6 +2,7 @@ import jsonwebtoken from 'jsonwebtoken'
 import fs from 'fs'
 import { getConfig } from '../config/global_config'
 import { handleError } from '../helpers/error'
+import { UNAUTHORIZED } from 'http-status'
 
 const jwt = jsonwebtoken
 const getKey = keyPath => fs.readFileSync(keyPath, 'utf-8')
@@ -38,16 +39,25 @@ export const verifyToken = async (req, res, next) => {
 
   const token = getToken(req.headers)
   if (!token) {
-    return handleError({ statusCode: 401, message: 'Token is not valid!' })
+    return handleError(
+      { code: UNAUTHORIZED, message: 'Token is not valid!' },
+      res
+    )
   }
   let decodedToken
   try {
     decodedToken = await jwt.verify(token, publicKey, verifyOptions)
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-      return handleError({ statusCode: 401, message: 'Access token expired!' })
+      return handleError(
+        { code: UNAUTHORIZED, message: 'Access token expired!' },
+        res
+      )
     }
-    return handleError({ statusCode: 401, message: 'Token is not valid!' })
+    return handleError(
+      { code: UNAUTHORIZED, message: 'Token is not valid!' },
+      res
+    )
   }
   const userId = decodedToken.sub
   req.userId = userId

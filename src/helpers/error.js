@@ -1,16 +1,24 @@
 export default class ErrorConstructor extends Error {
-  constructor(statusCode, message) {
+  constructor(code, message) {
     super()
-    this.statusCode = statusCode
+    this.code = code
     this.message = message
   }
 }
 
 export const handleError = (err, res) => {
-  const { statusCode, message } = err
-  return res.status(statusCode).json({
-    status: 'error',
-    statusCode,
-    message,
-  })
+  const { code, message } = err
+  if (!code) {
+    return res.status(500).json({
+      code: 500,
+      message: 'Internal server error',
+      success: false,
+    })
+  } else {
+    return res.status(code).json({
+      success: false,
+      code,
+      message,
+    })
+  }
 }
